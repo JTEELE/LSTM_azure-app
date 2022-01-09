@@ -1,0 +1,14 @@
+pandas
+nltk
+pycoingecko
+tradingview_ta
+git+https://github.com/StreamAlpha/tvdatafeed.git
+finta
+pyod
+pycoingecko
+tweepy
+textblob
+wordcloud
+requests
+sklearn
+json
