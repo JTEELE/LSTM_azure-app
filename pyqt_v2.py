@@ -21,7 +21,8 @@ class Ui_MainWindow(object):
         self.pushButton.clicked.connect(self.OpenClick)
 
     def OpenClick(self):
-        app.print_results()
+        import algo
+        algo.print_results()
 
 if __name__ == "__main__":
     import sys
