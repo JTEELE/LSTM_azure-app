@@ -1,6 +1,10 @@
 ## INCLUDE IN README. Troubleshooting Steps. We know there are a lot of downloads for this application. 
 
 Common webdriver issues.
-#pip install webdriver-auto-update
-#pip install webdriver-manager
-#tv = TvDatafeed(auto_login=False)  --Use if first time user. Log into TradingView via chromedriver
+pip install webdriver-auto-update
+pip install webdriver-manager
+tv = TvDatafeed(auto_login=False)  --Use if first time user. Log into TradingView via chromedriver
+
+import ipynb file to py file:
+import import_ipynb
+import pyfile.py

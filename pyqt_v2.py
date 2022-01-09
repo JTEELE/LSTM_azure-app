@@ -1,5 +1,5 @@
 from PyQt5 import QtCore, QtGui, QtWidgets
-import draft
+import app
 
 class Ui_MainWindow(object):
     def setupUi(self, MainWindow):
@@ -16,14 +16,12 @@ class Ui_MainWindow(object):
     def retranslateUi(self, MainWindow):
         _translate = QtCore.QCoreApplication.translate
         MainWindow.setWindowTitle(_translate("MainWindow", "MainWindow"))
-        self.pushButton.setText(_translate("MainWindow", "Open"))
+        self.pushButton.setText(_translate("MainWindow", "Current Market Analysis"))
 
         self.pushButton.clicked.connect(self.OpenClick)
 
     def OpenClick(self):
-        algorithm.FunctionAlgo()
-
-
+        app.print_results()
 
 if __name__ == "__main__":
     import sys
