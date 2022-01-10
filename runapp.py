@@ -30,7 +30,7 @@ class Main(QMainWindow):
     def retranslateUi(self, MainWindow):
         _translate = QtCore.QCoreApplication.translate
         MainWindow.setWindowTitle(_translate("MainWindow", "MainWindow"))
-        self.pushButton.setText(_translate("MainWindow", "Current Market Analysis"))
+        self.pushButton.setText(_translate("MainWindow", "Run"))
         self.pushButton.clicked.connect(self.algo)
 
     

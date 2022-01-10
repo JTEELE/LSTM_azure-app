@@ -18,7 +18,6 @@ from pycoingecko import CoinGeckoAPI
 from textblob import TextBlob
 from wordcloud import WordCloud
 from nltk.sentiment.vader import SentimentIntensityAnalyzer
-from newsapi.newsapi_client import NewsApiClient
 import requests
 from requests import Request, Session
 from requests.exceptions import ConnectionError, Timeout, TooManyRedirects
@@ -39,7 +38,6 @@ from pandas import json_normalize
 import os
 import ast
 import tweepy
-from pytrends. request import TrendReq 
 import matplotlib.pyplot as plt
 plt.style.use('fivethirtyeight')
 load_dotenv()
@@ -58,8 +56,7 @@ consumer_key = os.getenv("consumer_key")
 consumer_secret_key = os.getenv("consumer_secret")
 
 
-#News API & Reddit credentials
-newsapi = NewsApiClient(api_key=os.environ["NEWS_API_KEY2"])
+#Twitter & Reddit credentials
 reddit_id = os.getenv("reddit_id")
 reddit_key = os.getenv("reddit_key")
 data = ast.literal_eval(os.getenv("reddit_data"))
@@ -68,10 +65,6 @@ headers = {'User-Agent': 'TaraRedditApi/0.0.1'}
 
 res = requests.post('https://www.reddit.com/api/v1/access_token',
                    auth=auth, data=data, headers=headers)
-
-#IMB Watson credentials
-# TOKEN = res.json()['access_token']
-# headers['Authorization'] = f'bearer{TOKEN}'
 
 #Twitter credentials
 authenticate = tweepy.OAuthHandler(consumer_key, consumer_secret)
@@ -474,7 +467,7 @@ class print_results(Main):
     print('')
     print('')
     print('')
-    print(f'Overall Crypto Market Sentiment: scanned at {time}')
+    print(f'Overall Crypto Market Sentiment: Twitter scanned at {time}')
     print('')
     print(f'{market_positive_posts} of their posts have a positive tone.')
     print('')
@@ -487,7 +480,7 @@ class print_results(Main):
     print('')
     print('')
     print('')
-    print(f'Top Influential Icons in the Cryptocurrency market: scanned at {time}')
+    print(f'Top Influential Icons in the Cryptocurrency market: Twitter scanned at {time}')
     print('')
     print(f'{positive_posts} of their posts have a positive tone.')
     print('')
@@ -496,17 +489,6 @@ class print_results(Main):
     print(f'The remaining {neutral_posts} of their posts have a neutral tone.')
     print('')
     print('')
-    print('')
-    print('')
-    print('')
-    print('')
-    print(f'Google Trends Scanned at {time}')
-    print('')
-    print(f'Crypto is trending with a sentiment score of {gcrypto_trends}.')
-    print('')
-    print(f'Inflation is trending with a sentiment score of {ginflation_trends}.')
-    print('')
-    print(f'Energy is trending with a sentiment score of {genergy_trends}.')
     print('') 
     print('')
     print('')

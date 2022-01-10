@@ -1,5 +1,6 @@
-pandas
+PyQt5
 nltk
+ibm-watson
 pycoingecko
 tradingview_ta
 git+https://github.com/StreamAlpha/tvdatafeed.git
@@ -11,4 +12,7 @@ textblob
 wordcloud
 requests
 sklearn
-json
+hvplot
+datetime
+python-dotenv
+webdriver-manager
