@@ -16,3 +16,14 @@ tv = TvDatafeed(auto_login=False)  --Use if first time user. Log into TradingVie
 import ipynb file to py file:
 import import_ipynb
 import pyfile.py
+
+
+Azure Regions:
+EastUS1	EastUS2
+EastUS22	EastUS
+WestUS	WestUS
+WestUS2	WestUS2
+NorthCentralUS	NorthCentralUS
+CentralUS	CentralUS
+SouthCentralUS	SouthCentralUS
+WestCentralUS	WestCentralUS
