@@ -4,26 +4,3 @@
 #pip install --upgrade -r requirements.txt
 
 azure-functions
-PyQt5
-nltk
-ibm-watson
-pycoingecko
-tradingview_ta
-tvdatafeed
-chromedriver-autoinstaller
-pandas
-selenium
-websocket-client
-setuptools
-finta
-pyod
-pycoingecko
-tweepy
-textblob
-requests
-sklearn
-hvplot
-datetime
-python-dotenv
-webdriver-manager
-ipykernel
