@@ -305,7 +305,7 @@ try:
             data.to_csv(f'Data/Functionality/TradingView/{tickers}.csv')
             crypto_data = crypto_data.append(data)
 except:
-    print('ERROR: Check for websocket upgrade, ensure dependencies in requirements.txt are installed, or try CONDA UPDATE CONDA')
+    print('You must have TradingView credentials to extract data via websocket')
 print(f'Extracted prices and calculated oscillator/momentum indicator values')
 
 

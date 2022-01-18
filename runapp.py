@@ -38,8 +38,8 @@ class Main(QMainWindow):
         import algo
         algo.print_results()
     
-    def algo(self):
-        import algo
+    def results(self):
+        import results
         algo.print_results()
 
 
