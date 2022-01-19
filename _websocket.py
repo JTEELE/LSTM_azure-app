@@ -1,5 +1,4 @@
-# Extract Algo & NLP results from Funcationality folders
-
+# Live data requires an active TradingView and Twitter Developer account. See README for more information.
 from datetime import datetime, timedelta
 import os
 time = datetime.now()
@@ -7,7 +6,7 @@ import pandas as pd
 from nltk.stem import WordNetLemmatizer
 from nltk.tokenize import word_tokenize
 lemmatizer = WordNetLemmatizer()
-from functions import algo_strategy
+from _functions import *
 from main import Main
 #Import dependencies
 from tradingview_ta import TA_Handler, Interval
@@ -68,13 +67,6 @@ for influencer in influencers:
     recent_posts = api.user_timeline(screen_name = influencer, count=10, tweet_mode='extended')
     data = pd.DataFrame( [tweet.full_text for tweet in recent_posts] , columns=['Tweets'])
     recent_twitter_df = recent_twitter_df.append(data)
-
-
-def clean_text(text):
-    regex = re.compile("[^a-zA-Z0-9]")
-    re_clean = regex.sub(' ', text)
-    words = word_tokenize(re_clean)
-    return words
 
 recent_twitter_df['Tweets'] = recent_twitter_df['Tweets'].apply(clean_text)
 

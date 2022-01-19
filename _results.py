@@ -1,7 +1,6 @@
-# Extract Algo & NLP results from Funcationality folders
-
 from datetime import datetime, timedelta
 import os
+from _functions import *
 from main import Main
 time = datetime.now()
 import pandas as pd
@@ -16,24 +15,6 @@ tickers = pd.read_csv('Data/ticker_names.csv', index_col='Ticker2')
 tickers = tickers.index.values.tolist()
 extension = '.csv'
 
-def Average(lst):
-    return sum(lst) / len(lst)
-
-def Sum(lst):
-    return sum(lst) / len(lst)
-
-def format_convert(x):
-    try:
-        return "{:.0%}".format(x)
-    except:
-        return "{:.0%}".format(float(x))
-
-def dollar_sign(x):
-    return "${:,.2f}".format(x)
-
-def percent_sign(x):
-    return "{:,.2f}%".format(x)
-
 big_string=''.join([str(item) for item in big_movers_df])
 movers = re.findall('([A-Z]+)', big_string)
 movers = [val for val in movers if val in tickers]
@@ -46,24 +27,6 @@ btc_price = float(bitcoin[0])
 btc_onehr = (float(bitcoin[5])) + (float(bitcoin[6])/100)
 btc_fivehr = (float(bitcoin[10])) + (float(bitcoin[11])/100)
 btc_24hr = (float(bitcoin[15])) + (float(bitcoin[16])/100)
-
-
-# #Algo strategy results
-# algo_crypto = []
-# investment_algorithm = {}
-# for root, dirs_list, files_list in os.walk(algo_path):
-#     for file_name in files_list:
-#         if os.path.splitext(file_name)[-1] == extension:
-#             file_name_path = os.path.join(root, file_name)
-#             data = pd.read_csv(file_name_path)
-#             investment_algorithm[file_name] = data
-#             algo_crypto.append(file_name)
-
-# total_profit = []
-# for algo in algo_crypto:
-#     total_returns = (investment_algorithm[algo]['profit'].iloc[-1])
-#     total_profit.append(total_returns)
-# total_profit = sum(total_profit)
 
 nft_list = []
 regex_data = []
@@ -87,7 +50,7 @@ class print_results(Main):
     print("")
     print("")
     print("NFT BOT")
-    print('Biggest names in the NFT space')
+    print('Biggest words in the Non-Fungible Token (NFT) marketplace')
     for row in nft_list:
         print(row)
     print('')

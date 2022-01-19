@@ -23,6 +23,31 @@ import re
 import tweepy
 import matplotlib.pyplot as plt
 
+def clean_text(text):
+    regex = re.compile("[^a-zA-Z0-9]")
+    re_clean = regex.sub(' ', text)
+    words = word_tokenize(re_clean)
+    return words
+
+
+def Average(lst):
+    return sum(lst) / len(lst)
+
+def Sum(lst):
+    return sum(lst) / len(lst)
+
+def format_convert(x):
+    try:
+        return "{:.0%}".format(x)
+    except:
+        return "{:.0%}".format(float(x))
+
+def dollar_sign(x):
+    return "${:,.2f}".format(x)
+
+def percent_sign(x):
+    return "{:,.2f}%".format(x)
+
 
 def algo_strategy(time_series):
     buy_price=0
