@@ -31,16 +31,16 @@ class Main(QMainWindow):
         _translate = QtCore.QCoreApplication.translate
         MainWindow.setWindowTitle(_translate("MainWindow", "MainWindow"))
         self.pushButton.setText(_translate("MainWindow", "Run-Websocket"))
-        self.pushButton.clicked.connect(self.algo)
+        self.pushButton.clicked.connect(self.results)
 
     
     def algo(self):
         import algo
-        algo.print_results()
+
     
     def results(self):
         import results
-        algo.print_results()
+        results.print_results()
 
 
 def main():
