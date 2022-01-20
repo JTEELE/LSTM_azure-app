@@ -11,6 +11,7 @@ from PyQt5.QtGui import QCursor, QPixmap
 from PyQt5.QtCore import QRect
 from PyQt5.QtWidgets import QWidget, QLineEdit
 import sys
+import os
 
 class Main(QMainWindow):
 
@@ -35,12 +36,12 @@ class Main(QMainWindow):
         self.label = QLabel(self.widget)
         self.label.setObjectName(u"label")
         self.label.setGeometry(QRect(-4, -7, 721, 531))
-        self.label.setPixmap(QPixmap(u"graphics/IMG_8841.JPG"))
+        self.label.setPixmap(QPixmap(u"Images/IMG_8841.JPG"))
         self.label.setScaledContents(True)
         self.label_2 = QLabel(self.widget)
         self.label_2.setObjectName(u"label_2")
         self.label_2.setGeometry(QRect(40, 10, 131, 51))
-        self.label_2.setPixmap(QPixmap(u"graphics/unknown.png"))
+        self.label_2.setPixmap(QPixmap(u"Images/unknown.png"))
         self.label_2.setScaledContents(True)
         MainWindow.setCentralWidget(self.widget)
         self.label.raise_()
@@ -60,23 +61,27 @@ class Main(QMainWindow):
 
     def retranslateUi(self, MainWindow):
         MainWindow.setWindowTitle(QCoreApplication.translate("Cryptara", u"MainWindow", None))
-        self.pushButton.setText(QCoreApplication.translate("Cryptara", u"Run Algorithm", None))
+        self.pushButton.setText(QCoreApplication.translate("Cryptara", u"Algo", None))
         self.pushButton.clicked.connect(self.market_analysis)
         self.pushButton_2.setText(QCoreApplication.translate("Cryptara", u"TaraSwap", None))
         self.pushButton_2.clicked.connect(self.blockchain)
-        self.pushButton_3.setText(QCoreApplication.translate("Cryptara", u"Run Websocket", None))
+        self.pushButton_3.setText(QCoreApplication.translate("Cryptara", u"Websocket", None))
+        self.pushButton_3.clicked.connect(self.websocket)
         self.label.setText("")
         self.label_2.setText("")
 
 
     def market_analysis(self):
-        import _results
-        _results.print_results()
+        import _algo
+        _algo.algo()
 
     def blockchain(self):
         import webbrowser
         url = 'https://ast-xxi.github.io/Cryptara_FinalProject/'
         webbrowser.open_new_tab(url)
+
+    def websocket(self):
+        import _websocket
 
 def main():
     app = QApplication(sys.argv)
