@@ -84,88 +84,91 @@ influencers = ['CryptoPriceCall','HourlyBTCUpdate','whale_alert', 'nftwhalealert
 symbol = []
 twitter_handle = []
 
-#LUNARCRUSH API
-for coin in coin_list:
-    url = "https://api.lunarcrush.com/v2?data=influencers&key="+api_key+"&symbol="+coin+"&limit=3"
-    assets = json.loads(urllib.request.urlopen(url).read())
-    for asset in assets['data']:
-        twitter_handle.append(str(asset['twitter_screen_name']))
-
-
-influencers_df = twitter_handle
-influencer_posts_df = pd.DataFrame()
-
-for influencer in influencers_df:
-    recent_posts = api.user_timeline(screen_name = influencer, count=10, tweet_mode='extended')
-    data = pd.DataFrame( [tweet.full_text for tweet in recent_posts] , columns=['Tweets'])
-    influencer_posts_df = influencer_posts_df.append(data)
-
-#new columns
-influencer_posts_df['Subjectivity'] = influencer_posts_df['Tweets'].apply(get_subjectivity)
-influencer_posts_df['Polarity'] = influencer_posts_df['Tweets'].apply(get_polarity)
-
-#create new column for analysis    
-influencer_posts_df['Analysis'] = influencer_posts_df['Polarity'].apply(get_analysis)
-
-
-#apply clean text
-influencer_posts_df['Tweets'] = influencer_posts_df['Tweets'].apply(cleaner_text)
-
-#write to csv
-influencer_posts_df.to_csv('Data/Functionality/Twitter/influencer_twitter_sentiment.csv')
-
-
-sources = "twitter"
-symbol =[]
-recent_tweets = []
-
-#LUNAR TOP FEED
-for coin in coin_list:
-    url = "https://api.lunarcrush.com/v2?data=feeds&key=jaxk68993earvoogjbi86a&symbol="+coin+"&limit=5&sources="+sources
-    assets = json.loads(urllib.request.urlopen(url).read())
-    #pp.pprint(assets)
-    for asset in assets['data']:
-        #print("Symbol: " +asset['symbol'])
-        symbol.append(asset['symbol'])
-        #print("Text: "+asset['body'])
-        recent_tweets.append(asset['body'])
-
-
-
-        
-#tweets dictionary matchin symbol - tweet
-tweets_data = {'Symbol':symbol,'Tweet':recent_tweets}
-#append list to dataframe
-recent_tweets_df = pd.DataFrame(tweets_data, columns=['Symbol','Tweet'])
-
-#clean tweets text
-recent_tweets_df['Tweet'] = recent_tweets_df['Tweet'].apply(cleaner_text)
-
-
-recent_tweets_df['compound']=recent_tweets_df['Tweet'].apply(get_compound_sent)
-recent_tweets_df['positive']=recent_tweets_df['Tweet'].apply(get_positive)
-recent_tweets_df['negative']=recent_tweets_df['Tweet'].apply(get_negative)
-recent_tweets_df['neutral']=recent_tweets_df['Tweet'].apply(get_neutral)
-
-
-
-
-#write to CSV
-recent_tweets_df.to_csv('Data/Functionality/Twitter/crypto_tweet_sentiment.csv')
-
-# Create a list of stopwords
-stop_words = stopwords.words('english')
-
-
-#create tokens column
-recent_tweets_df['tokens']=recent_tweets_df['Tweet'].apply(tokenizer)
-
-tokens = recent_tweets_df['Tweet']
-top_10_words = token_count(tokens)
-
-#Extract 15 tweets from each twitter user timeline
-recent_twitter_df = pd.DataFrame()
 try:
+
+
+    #LUNARCRUSH API
+    for coin in coin_list:
+        url = "https://api.lunarcrush.com/v2?data=influencers&key="+api_key+"&symbol="+coin+"&limit=3"
+        assets = json.loads(urllib.request.urlopen(url).read())
+        for asset in assets['data']:
+            twitter_handle.append(str(asset['twitter_screen_name']))
+
+
+    influencers_df = twitter_handle
+    influencer_posts_df = pd.DataFrame()
+
+    for influencer in influencers_df:
+        recent_posts = api.user_timeline(screen_name = influencer, count=10, tweet_mode='extended')
+        data = pd.DataFrame( [tweet.full_text for tweet in recent_posts] , columns=['Tweets'])
+        influencer_posts_df = influencer_posts_df.append(data)
+
+    #new columns
+    influencer_posts_df['Subjectivity'] = influencer_posts_df['Tweets'].apply(get_subjectivity)
+    influencer_posts_df['Polarity'] = influencer_posts_df['Tweets'].apply(get_polarity)
+
+    #create new column for analysis    
+    influencer_posts_df['Analysis'] = influencer_posts_df['Polarity'].apply(get_analysis)
+
+
+    #apply clean text
+    influencer_posts_df['Tweets'] = influencer_posts_df['Tweets'].apply(cleaner_text)
+
+    #write to csv
+    influencer_posts_df.to_csv('Data/Functionality/Twitter/influencer_twitter_sentiment.csv')
+
+
+    sources = "twitter"
+    symbol =[]
+    recent_tweets = []
+
+    #LUNAR TOP FEED
+    for coin in coin_list:
+        url = "https://api.lunarcrush.com/v2?data=feeds&key=jaxk68993earvoogjbi86a&symbol="+coin+"&limit=5&sources="+sources
+        assets = json.loads(urllib.request.urlopen(url).read())
+        #pp.pprint(assets)
+        for asset in assets['data']:
+            #print("Symbol: " +asset['symbol'])
+            symbol.append(asset['symbol'])
+            #print("Text: "+asset['body'])
+            recent_tweets.append(asset['body'])
+
+
+
+            
+    #tweets dictionary matchin symbol - tweet
+    tweets_data = {'Symbol':symbol,'Tweet':recent_tweets}
+    #append list to dataframe
+    recent_tweets_df = pd.DataFrame(tweets_data, columns=['Symbol','Tweet'])
+
+    #clean tweets text
+    recent_tweets_df['Tweet'] = recent_tweets_df['Tweet'].apply(cleaner_text)
+
+
+    recent_tweets_df['compound']=recent_tweets_df['Tweet'].apply(get_compound_sent)
+    recent_tweets_df['positive']=recent_tweets_df['Tweet'].apply(get_positive)
+    recent_tweets_df['negative']=recent_tweets_df['Tweet'].apply(get_negative)
+    recent_tweets_df['neutral']=recent_tweets_df['Tweet'].apply(get_neutral)
+
+
+
+
+    #write to CSV
+    recent_tweets_df.to_csv('Data/Functionality/Twitter/crypto_tweet_sentiment.csv')
+
+    # Create a list of stopwords
+    stop_words = stopwords.words('english')
+
+
+    #create tokens column
+    recent_tweets_df['tokens']=recent_tweets_df['Tweet'].apply(tokenizer)
+
+    tokens = recent_tweets_df['Tweet']
+    top_10_words = token_count(tokens)
+
+    #Extract 15 tweets from each twitter user timeline
+    recent_twitter_df = pd.DataFrame()
+
 
     for influencer in influencers:
         recent_posts = api.user_timeline(screen_name = influencer, count=10, tweet_mode='extended')
