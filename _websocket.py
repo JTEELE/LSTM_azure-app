@@ -1,6 +1,7 @@
-# Live data requires an active TradingView and Twitter Developer account. 
+# Extract live websocket data, user must have active TradingView & Twitter Developer account.
 from datetime import datetime, timedelta
 import os
+import re
 time = datetime.now()
 import pandas as pd
 from nltk.stem import WordNetLemmatizer
@@ -11,7 +12,6 @@ import json
 lemmatizer = WordNetLemmatizer()
 from _functions import *
 from main import Main
-#Import dependencies
 from tradingview_ta import TA_Handler, Interval
 from finta import TA
 from pyod.models.copod import COPOD
@@ -24,7 +24,6 @@ from sklearn.model_selection import train_test_split
 from dotenv import load_dotenv
 from datetime import datetime, timedelta
 from pandas import json_normalize
-import re
 import tweepy
 import matplotlib.pyplot as plt
 plt.style.use('fivethirtyeight')
@@ -328,4 +327,4 @@ try:
     top_ten_marketcap.to_csv('Data/CurrentTopTen.csv')
 
 except:
-    print('ERROR: Live data requries an active TradingView & Twitter Developer account. See README for more information.')
+    print('ERROR: Check environment variables - Live data requries an active TradingView & Twitter Developer account. See README for more information.')
